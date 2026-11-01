@@ -76,7 +76,15 @@ src/
 sql/        MySQL schema
 lib/        Java dependencies
 ```
+## Screenshots
 
+### Login Interface
+![Login Interface](screenshots/login.png)
+
+
+
+### Chat Room Interface
+![Chat Room Interface](screenshots/chat.png)
 ## Dependencies
 
 The required JARs are included in `lib/`:
