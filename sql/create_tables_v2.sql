@@ -1,3 +1,17 @@
+-- Chats must exist before messages can reference them.
+CREATE TABLE IF NOT EXISTS chats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chat_name VARCHAR(255) NOT NULL,
+    chat_type VARCHAR(20) DEFAULT 'GROUP',
+    created_by VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- The current server stores messages in chat 1.
+INSERT INTO chats (id, chat_name, chat_type, created_by)
+VALUES (1, 'General', 'GROUP', 'System')
+ON DUPLICATE KEY UPDATE chat_name = chat_name;
+
 -- User authentication table
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,16 +31,7 @@ CREATE TABLE IF NOT EXISTS messages (
     FOREIGN KEY (chat_id) REFERENCES chats(id)
 );
 
--- New groups table for group chat support
-CREATE TABLE IF NOT EXISTS chats (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    chat_name VARCHAR(255) NOT NULL,
-    chat_type VARCHAR(20) DEFAULT 'GROUP',
-    created_by VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- New table to map users to groups/chats
+-- Map users to groups/chats.
 CREATE TABLE IF NOT EXISTS chat_members (
     id INT AUTO_INCREMENT PRIMARY KEY,
     chat_id INT NOT NULL,
@@ -35,5 +40,4 @@ CREATE TABLE IF NOT EXISTS chat_members (
     FOREIGN KEY (chat_id) REFERENCES chats(id),
     UNIQUE KEY unique_member (chat_id, username)
 );
-
 
