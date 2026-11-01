@@ -79,12 +79,11 @@ lib/        Java dependencies
 ## Screenshots
 
 ### Login Interface
-![Login Interface](screenShots/login.png)
-
+![Login Interface](./ScreenShots/Login.png)
 
 
 ### Chat Room Interface
-![Chat Room Interface](screenShots/chat.png)
+![Chat Room Interface](./ScreenShots/chat.png)
 ## Dependencies
 
 The required JARs are included in `lib/`:
